@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator and Counter</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0;
+            padding: 30px;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        input {
+            padding: 10px;
+            margin: 8px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        h2 {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Calculator</h1>
+
+    <input type="number" id="num1" placeholder="Enter first number">
+    <input type="number" id="num2" placeholder="Enter second number">
+
+    <br>
+
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">−</button>
+    <button onclick="calculate('*')">×</button>
+    <button onclick="calculate('/')">÷</button>
+
+    <h2 id="result">Result: 0</h2>
+
+    <hr>
+
+    <h1>Counter</h1>
+
+    <h2 id="count">0</h2>
+
+    <button onclick="increment()">Increment</button>
+    <button onclick="decrement()">Decrement</button>
+    <button onclick="reset()">Reset</button>
+
+</div>
+
+<script>
+    // Counter state
+    let count = 0;
+
+    function increment() {
+        count++;
+        document.getElementById("count").innerText = count;
+    }
+
+    function decrement() {
+        count--;
+        document.getElementById("count").innerText = count;
+    }
+
+    function reset() {
+        count = 0;
+        document.getElementById("count").innerText = count;
+    }
+
+    // Calculator function
+    function calculate(operator) {
+        let a = document.getElementById("num1").value;
+        let b = document.getElementById("num2").value;
+
+        if (a === "" || b === "") {
+            document.getElementById("result").innerText =
+                "Please enter both numbers";
+            return;
+        }
+
+        a = Number(a);
+        b = Number(b);
+
+        let result;
+
+        switch (operator) {
+            case '+':
+                result = a + b;
+                break;
+
+            case '-':
+                result = a - b;
+                break;
+
+            case '*':
+                result = a * b;
+                break;
+
+            case '/':
+                result = b === 0
+                    ? "Cannot divide by zero"
+                    : a / b;
+                break;
+        }
+
+        document.getElementById("result").innerText =
+            "Result: " + result;
+    }
+</script>
+
+</body>
+</html>
